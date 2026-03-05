@@ -103,11 +103,11 @@ const tools = [
   },
 ]
 
-export default function LeftToolbar() {
+export default function LeftToolbar({ onAiClick }) {
   return (
     <div className="left-toolbar">
       <div className="ai-btn-wrap">
-        <button className="ai-btn">
+        <button className="ai-btn" onClick={onAiClick}>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M10 2l1.5 4.5L16 8l-4.5 1.5L10 14l-1.5-4.5L4 8l4.5-1.5L10 2z" fill="white"/>
             <path d="M15 13l.8 2.2L18 16l-2.2.8L15 19l-.8-2.2L12 16l2.2-.8L15 13z" fill="white" opacity="0.8"/>
