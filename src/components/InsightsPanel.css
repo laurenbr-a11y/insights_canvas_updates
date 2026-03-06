@@ -37,24 +37,94 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 24px;
-  gap: 24px;
+  padding: 28px 28px 16px;
+  overflow-y: auto;
 }
 
-.insights-question {
-  font-size: 18px;
-  font-weight: 600;
-  color: #1a1a1a;
-  text-align: center;
-  line-height: 1.4;
+.insights-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.insights-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6c4fff 0%, #9b4dff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(108, 79, 255, 0.35);
+}
+
+.insights-avatar-chevron {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.insights-greeting {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2d2d2d;
+  margin-bottom: 12px;
+}
+
+.insights-description {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.insights-can-help {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.insights-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.insights-suggestion {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 9px 16px;
+  font-size: 13.5px;
+  color: #333;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  width: fit-content;
+}
+
+.insights-suggestion:hover {
+  background: #f7f5ff;
+  border-color: #c4b5fd;
+}
+
+.insights-input-footer {
+  padding: 12px 16px 16px;
+  border-top: 1px solid #f0f0f0;
 }
 
 .insights-input-wrap {
   display: flex;
   align-items: center;
-  width: 100%;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 10px 12px;
@@ -84,30 +154,4 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-
-.insights-suggestions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  align-items: flex-start;
-}
-
-.insights-suggestion {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #f7f7f7;
-  border: 1px solid #e8e8e8;
-  border-radius: 20px;
-  padding: 8px 14px;
-  font-size: 13px;
-  color: #444;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.insights-suggestion:hover {
-  background: #f0f0f0;
 }
