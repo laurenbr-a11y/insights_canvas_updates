@@ -1,0 +1,82 @@
+.citation-card {
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  cursor: grab;
+  transition: box-shadow 0.15s, transform 0.15s;
+  position: relative;
+  border-left: 3px solid var(--card-accent);
+}
+
+.citation-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+.citation-card:active {
+  cursor: grabbing;
+}
+
+.citation-card-drag-hint {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #bbb;
+  margin-bottom: 8px;
+}
+
+.citation-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.citation-customer-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.citation-customer-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.citation-tier {
+  font-size: 11px;
+  color: #888;
+}
+
+.citation-category-tag {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.citation-feedback {
+  font-size: 12.5px;
+  color: #444;
+  line-height: 1.55;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.citation-source {
+  font-size: 11px;
+  color: #aaa;
+}

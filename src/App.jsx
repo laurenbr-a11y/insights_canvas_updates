@@ -8,10 +8,22 @@ import SidekicksPanel from './components/SidekicksPanel'
 import InsightsPanel from './components/InsightsPanel'
 
 export default function App() {
-  const [panel, setPanel] = useState(null) // null | 'sidekicks' | 'insights'
+  const [panel, setPanel] = useState(null)
+  const [canvasCards, setCanvasCards] = useState([])
 
   function handleAiClick() {
     setPanel(p => p === null ? 'sidekicks' : null)
+  }
+
+  function handleDropCard(card, x, y) {
+    setCanvasCards(prev => [
+      ...prev,
+      { ...card, instanceId: `${card.id}-${Date.now()}`, x, y }
+    ])
+  }
+
+  function handleRemoveCard(instanceId) {
+    setCanvasCards(prev => prev.filter(c => c.instanceId !== instanceId))
   }
 
   return (
@@ -19,7 +31,11 @@ export default function App() {
       <Header />
       <div className="miro-body">
         <LeftToolbar onAiClick={handleAiClick} />
-        <Canvas />
+        <Canvas
+          cards={canvasCards}
+          onDrop={handleDropCard}
+          onRemoveCard={handleRemoveCard}
+        />
         {panel === 'sidekicks' && (
           <SidekicksPanel
             onClose={() => setPanel(null)}
