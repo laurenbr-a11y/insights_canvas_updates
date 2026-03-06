@@ -1,0 +1,47 @@
+.inline-response {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #333;
+  line-height: 1.7;
+}
+
+.ir-paragraph {
+  margin: 0;
+}
+
+.ir-paragraph--heading {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 4px;
+}
+
+.ir-bullets {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ir-bullet {
+  line-height: 1.65;
+}
+
+.ir-blockquote {
+  margin: 6px 0 0;
+  padding: 10px 14px;
+  border-left: 3px solid #6c4fff;
+  background: #faf9ff;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #333;
+  font-size: 13.5px;
+  line-height: 1.65;
+  font-weight: 500;
+}
+
+.ir-blockquote-text {
+  margin-right: 2px;
+}

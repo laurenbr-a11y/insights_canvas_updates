@@ -1,0 +1,108 @@
+.citation-chip-wrap {
+  position: relative;
+  display: inline;
+}
+
+.citation-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ede9fe;
+  color: #6c4fff;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  vertical-align: middle;
+  margin: 0 1px;
+  flex-shrink: 0;
+  transition: background 0.1s;
+}
+
+.citation-chip:hover {
+  background: #ddd6fe;
+}
+
+.citation-popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  padding: 10px 12px;
+  z-index: 999;
+  cursor: grab;
+}
+
+.citation-popover:active {
+  cursor: grabbing;
+}
+
+.citation-popover-drag-hint {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.citation-popover-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.citation-popover-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.citation-popover-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.citation-popover-tier {
+  font-size: 10px;
+  color: #999;
+}
+
+.citation-popover-tag {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.citation-popover-quote {
+  font-size: 12px;
+  color: #444;
+  font-style: italic;
+  line-height: 1.55;
+  margin: 0 0 6px;
+}
+
+.citation-popover-source {
+  font-size: 10.5px;
+  color: #bbb;
+}

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import './InsightsPanel.css'
-import CitationCard from './CitationCard'
+import InlineResponse from './InlineResponse'
 import { mockResponses, fallbackResponse } from '../data/mockResponses'
 
 const suggestions = [
@@ -10,12 +10,6 @@ const suggestions = [
   "What do our top accounts have in common?",
 ]
 
-function parseMarkdownBold(text) {
-  const parts = text.split(/\*\*(.*?)\*\*/g)
-  return parts.map((part, i) =>
-    i % 2 === 1 ? <strong key={i}>{part}</strong> : part
-  )
-}
 
 export default function InsightsPanel({ onClose }) {
   const [messages, setMessages] = useState([])
@@ -101,12 +95,7 @@ export default function InsightsPanel({ onClose }) {
                       </svg>
                     </div>
                     <div className="message-ai-content">
-                      <p className="message-ai-summary">{parseMarkdownBold(msg.summary)}</p>
-                      <div className="message-citations">
-                        {msg.citations.map(card => (
-                          <CitationCard key={card.id} card={card} />
-                        ))}
-                      </div>
+                      <InlineResponse blocks={msg.blocks} citations={msg.citations} />
                     </div>
                   </div>
                 )}
