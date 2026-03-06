@@ -11,7 +11,7 @@ const suggestions = [
 ]
 
 
-export default function InsightsPanel({ onClose }) {
+export default function InsightsPanel({ onClose, onAddToBoard }) {
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
@@ -95,7 +95,7 @@ export default function InsightsPanel({ onClose }) {
                       </svg>
                     </div>
                     <div className="message-ai-content">
-                      <InlineResponse blocks={msg.blocks} citations={msg.citations} />
+                      <InlineResponse blocks={msg.blocks} citations={msg.citations} onAddToBoard={onAddToBoard} />
                     </div>
                   </div>
                 )}

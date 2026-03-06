@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
 import Header from './components/Header'
 import LeftToolbar from './components/LeftToolbar'
@@ -10,15 +10,18 @@ import InsightsPanel from './components/InsightsPanel'
 export default function App() {
   const [panel, setPanel] = useState(null)
   const [canvasCards, setCanvasCards] = useState([])
+  const cardCountRef = useRef(0)
 
   function handleAiClick() {
     setPanel(p => p === null ? 'sidekicks' : null)
   }
 
-  function handleDropCard(card, x, y) {
+  function handleAddToBoard(card) {
+    const offset = cardCountRef.current * 24
+    cardCountRef.current += 1
     setCanvasCards(prev => [
       ...prev,
-      { ...card, instanceId: `${card.id}-${Date.now()}`, x, y }
+      { ...card, instanceId: `${card.id}-${Date.now()}`, x: 80 + offset, y: 80 + offset }
     ])
   }
 
@@ -31,11 +34,7 @@ export default function App() {
       <Header />
       <div className="miro-body">
         <LeftToolbar onAiClick={handleAiClick} />
-        <Canvas
-          cards={canvasCards}
-          onDrop={handleDropCard}
-          onRemoveCard={handleRemoveCard}
-        />
+        <Canvas cards={canvasCards} onRemoveCard={handleRemoveCard} />
         {panel === 'sidekicks' && (
           <SidekicksPanel
             onClose={() => setPanel(null)}
@@ -43,7 +42,10 @@ export default function App() {
           />
         )}
         {panel === 'insights' && (
-          <InsightsPanel onClose={() => setPanel(null)} />
+          <InsightsPanel
+            onClose={() => setPanel(null)}
+            onAddToBoard={handleAddToBoard}
+          />
         )}
       </div>
       <ZoomControls />

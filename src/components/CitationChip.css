@@ -25,32 +25,48 @@
   background: #ddd6fe;
 }
 
+/* Portal-rendered popover — uses fixed positioning */
 .citation-popover {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 50%;
+  position: fixed;
   transform: translateX(-50%);
-  width: 260px;
+  width: 268px;
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
-  padding: 10px 12px;
-  z-index: 999;
-  cursor: grab;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 0 0 12px;
+  z-index: 9999;
+  overflow: hidden;
 }
 
-.citation-popover:active {
-  cursor: grabbing;
-}
-
-.citation-popover-drag-hint {
+.citation-popover-topbar {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 10px;
-  color: #ccc;
-  margin-bottom: 8px;
+  padding: 8px 12px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 10px;
+}
+
+.citation-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.1s, border-color 0.1s;
+}
+
+.citation-add-btn:hover {
+  background: #f7f5ff;
+  border-color: #c4b5fd;
+  color: #6c4fff;
 }
 
 .citation-popover-header {
@@ -58,6 +74,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
+  padding: 0 12px;
 }
 
 .citation-popover-avatar {
@@ -100,9 +117,11 @@
   font-style: italic;
   line-height: 1.55;
   margin: 0 0 6px;
+  padding: 0 12px;
 }
 
 .citation-popover-source {
   font-size: 10.5px;
   color: #bbb;
+  padding: 0 12px;
 }

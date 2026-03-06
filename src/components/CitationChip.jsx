@@ -1,9 +1,20 @@
 import { useState, useRef, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import './CitationChip.css'
 
-export default function CitationChip({ citation }) {
+export default function CitationChip({ citation, onAddToBoard }) {
   const [open, setOpen] = useState(false)
+  const [pos, setPos] = useState({ top: 0, left: 0 })
   const chipRef = useRef(null)
+
+  function handleOpen() {
+    const rect = chipRef.current.getBoundingClientRect()
+    setPos({
+      top: rect.bottom + 8,
+      left: rect.left + rect.width / 2,
+    })
+    setOpen(o => !o)
+  }
 
   useEffect(() => {
     if (!open) return
@@ -14,19 +25,14 @@ export default function CitationChip({ citation }) {
     return () => document.removeEventListener('mousedown', handleClick)
   }, [open])
 
-  function handleDragStart(e) {
-    e.dataTransfer.setData('application/json', JSON.stringify(citation))
-    e.dataTransfer.effectAllowed = 'copy'
+  function handleAdd() {
+    onAddToBoard(citation)
     setOpen(false)
   }
 
   return (
     <span className="citation-chip-wrap" ref={chipRef}>
-      <button
-        className="citation-chip"
-        onClick={() => setOpen(o => !o)}
-        title={citation.customer}
-      >
+      <button className="citation-chip" onClick={handleOpen} title={citation.customer}>
         <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
           <path d="M4.5 2.5H2.5a1 1 0 00-1 1v5a1 1 0 001 1h5a1 1 0 001-1V6.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
           <path d="M6.5 1.5h3v3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -34,18 +40,19 @@ export default function CitationChip({ citation }) {
         </svg>
       </button>
 
-      {open && (
-        <div className="citation-popover" draggable onDragStart={handleDragStart}>
-          <div className="citation-popover-drag-hint">
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
-              <circle cx="2" cy="1.5" r="1" fill="#ccc"/>
-              <circle cx="5" cy="1.5" r="1" fill="#ccc"/>
-              <circle cx="8" cy="1.5" r="1" fill="#ccc"/>
-              <circle cx="2" cy="4.5" r="1" fill="#ccc"/>
-              <circle cx="5" cy="4.5" r="1" fill="#ccc"/>
-              <circle cx="8" cy="4.5" r="1" fill="#ccc"/>
-            </svg>
-            <span>drag to canvas</span>
+      {open && createPortal(
+        <div
+          className="citation-popover"
+          style={{ top: pos.top, left: pos.left }}
+        >
+          <div className="citation-popover-topbar">
+            <button className="citation-add-btn" onClick={handleAdd}>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <rect x="1" y="1" width="10" height="10" rx="2" stroke="currentColor" strokeWidth="1.3"/>
+                <path d="M6 4v4M4 6h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+              </svg>
+              Add to board
+            </button>
           </div>
           <div className="citation-popover-header">
             <div className="citation-popover-avatar" style={{ background: citation.accent }}>
@@ -61,7 +68,8 @@ export default function CitationChip({ citation }) {
           </div>
           <p className="citation-popover-quote">"{citation.quote}"</p>
           <div className="citation-popover-source">{citation.source}</div>
-        </div>
+        </div>,
+        document.body
       )}
     </span>
   )
